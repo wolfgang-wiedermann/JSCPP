@@ -18,6 +18,15 @@ module.exports =
     
     pchar = rt.normalPointerType(rt.charTypeLiteral)
 
+    # BEGIN: TEST
+
+    _malloc = (rt, _this, elemSize, elemCount) ->
+      console.log("Malloc called("+ elemSize +", "+ elemCount+")");
+
+    rt.regFunc( _malloc, "global" , "malloc" , [rt.intTypeLiteral, rt.intTypeLiteral] , void_pointer) 
+
+    # END: TEST
+
     _atof = (rt, _this, str) ->
       if rt.isStringType str.t
         str = rt.getStringFromCharArray str
